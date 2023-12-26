@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blur Page Demo</title>
+<style>
+body {
+  font-family: sans-serif;
+  overflow: hidden; /* Prevent scrolling when modal is open */
+}
+
+#modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px; /* Adjust width as needed */
+  text-align: center;
+}
+
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+  <button id="open-button">Show Modal</button>
+
+  <div id="modal-overlay">
+    <div id="modal-content">
+      <p>This is the content of the modal page.</p>
+      <button id="close-button">Close</button>
+    </div>
+  </div>
+
+<script>
+const openButton = document.getElementById("open-button");
+const modalOverlay = document.getElementById("modal-overlay");
+const closeButton = document.getElementById("close-button");
+
+openButton.addEventListener("click", function() {
+  modalOverlay.style.display = "flex"; /* Use flex for better centering */
+});
+
+closeButton.addEventListener("click", function() {
+  modalOverlay.style.display = "none";
+});
+</script>
+</body>
+</html>

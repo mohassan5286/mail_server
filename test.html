@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #todo-container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        #todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px 0;
+            background-color: #fff;
+        }
+
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        #new-todo {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #add-todo-btn,
+        #remove-todo-btn {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #add-todo-btn:hover,
+        #remove-todo-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="todo-container">
+    <h2>To-Do List</h2>
+    <ul id="todo-list"></ul>
+    <input type="text" id="new-todo" placeholder="Add a new to-do">
+    <button id="add-todo-btn">Add To-Do</button>
+    <button id="remove-todo-btn">Remove Selected</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const todoList = document.getElementById("todo-list");
+        const newTodoInput = document.getElementById("new-todo");
+        const addTodoBtn = document.getElementById("add-todo-btn");
+        const removeTodoBtn = document.getElementById("remove-todo-btn");
+
+        addTodoBtn.addEventListener("click", function () {
+            const todoText = newTodoInput.value.trim();
+
+            if (todoText !== "") {
+                // Create a new list item
+                const listItem = document.createElement("li");
+                listItem.className = "todo-item";
+
+                // Create a checkbox
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+
+                // Create a label for the todo text
+                const todoLabel = document.createElement("label");
+                todoLabel.textContent = todoText;
+
+                // Append checkbox and label to the list item
+                listItem.appendChild(checkbox);
+                listItem.appendChild(todoLabel);
+
+                // Append the list item to the todo list
+                todoList.appendChild(listItem);
+
+                // Clear the input field
+                newTodoInput.value = "";
+            }
+        });
+
+        removeTodoBtn.addEventListener("click", function () {
+            const selectedItems = document.querySelectorAll('.todo-item input[type="checkbox"]:checked');
+
+            selectedItems.forEach(function (item) {
+                // Remove the parent list item
+                item.parentNode.remove();
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
